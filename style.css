@@ -2,20 +2,99 @@ body {
     background-color: #9ba8c2 !important;
 }
 
+.container-fluid{
+    justify-content: center !important;
+}
+
 .container {
     background-color: #9ba8c2 !important;
-    min-height: 100vh;    display: flex;
+    display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 10vh;
 }
 
-.quizCard{
+.quizCard {
     width: 35rem;
+    padding-bottom: 16px;
 }
 
-.question-footer{
+.question-footer {
     display: flex;
     justify-content: space-between;
     border-top: 1px solid rgba(0, 0, 0, 0.4);
     align-items: center;
+    padding-top: 8px;
+}
+
+.quizAnswerCard:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.bg-danger {
+    color: white;
+}
+
+.bg-success {
+    color: white;
+}
+
+.fontWeight-bold {
+    font-weight: bold;
+}
+
+.endScreen {
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    padding-left: 0.5rem;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+.textAlign {
+    text-align: center;
+}
+
+.progress {
+    border-radius: 0px;
+}
+
+.btnRestartContainer {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 1100px) {
+
+    body{
+        background-color: white !important;
+    }
+
+    .navbar {
+        justify-content: center !important;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+
+    .container-fluid {
+        justify-content: center !important;
+    }
+
+    .container {
+        margin-top: 0 !important;
+        padding-right: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    .quizCard{
+        padding-bottom:  0 !important;
+    }
+
+    .card{
+        border: 0 !important;
+        position: static !important;
+    }
 }
