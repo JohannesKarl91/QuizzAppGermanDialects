@@ -29,7 +29,7 @@ let questions = [
         "answer_2": "etwas eintunken",
         "answer_3": "als DJ eine Platte auflegen",
         "answer_4": "Eine gepflegte Dusche einnehmen",
-        "correct_answer": 1
+        "correct_answer": 2
     },
     {
         "question": "Was bestellt ein/e Berliner/in, wenn ein Brühpulla bestellt wird?",
@@ -45,7 +45,7 @@ let questions = [
         "answer_2": "Schwierigkeit",
         "answer_3": "Schmutzige Füße",
         "answer_4": "Gemeine Tante",
-        "correct_answer": 1
+        "correct_answer": 2
     },
     {
         "question": "Was mein ein Ostfriese, wenn er sagt: Bitte gib mir mal die Funzel?",
@@ -73,37 +73,51 @@ function init() {
 
 function showQuestion() {
 
-    //Show endscreen, when value > then array.length
-    if (currentQuestion >= questions.length) {
-        document.getElementById('endScreen').style = '';
-        document.getElementById('questionScreen').style = 'display: none';
-        document.getElementById('endScreenCorrectAnswers').innerHTML = correctAnswerCounter;
-        document.getElementById('card-img-top').src = 'img/win2.jpg';
+    if (checkEndscreenCondition()) {
+        showEndscreen();
     }
 
-    //Show (next) question, when value < then array.length
     else {
-        let question = questions[currentQuestion];
-        showCurrentQuestionNo();
-        document.getElementById('questionText').innerHTML = question['question'];
-        document.getElementById('answer_1').innerHTML = question['answer_1'];
-        document.getElementById('answer_2').innerHTML = question['answer_2'];
-        document.getElementById('answer_3').innerHTML = question['answer_3'];
-        document.getElementById('answer_4').innerHTML = question['answer_4'];
 
-
-        let progressPercent = (currentQuestion + 1) / questions.length;
-        progressPercent = Math.round(progressPercent * 100);
-        console.log(progressPercent);
-        document.getElementById('progressPercentage1').innerHTML = `${progressPercent} %`;
-        document.getElementById('progressPercentage1').style = `width: ${progressPercent}%`;
-        document.getElementById('progressPercentage2').innerHTML = `${progressPercent} %`;
-        document.getElementById('progressPercentage2').style = `width: ${progressPercent}%`;
+        refreshToNextQuestion(currentQuestion);
+        refreshProgressbar(currentQuestion);
 
         showCurrentQuestionNo();
     }
 }
 
+
+function checkEndscreenCondition(){
+    return currentQuestion >= questions.length
+}
+
+
+function showEndscreen() {
+    document.getElementById('endScreen').style = '';
+    document.getElementById('questionScreen').style = 'display: none';
+    document.getElementById('endScreenCorrectAnswers').innerHTML = correctAnswerCounter;
+    document.getElementById('card-img-top').src = 'img/win2.jpg';
+}
+
+function refreshToNextQuestion(currentQuestion){
+    let question = questions[currentQuestion];    
+    document.getElementById('questionText').innerHTML = question['question'];
+    document.getElementById('answer_1').innerHTML = question['answer_1'];
+    document.getElementById('answer_2').innerHTML = question['answer_2'];
+    document.getElementById('answer_3').innerHTML = question['answer_3'];
+    document.getElementById('answer_4').innerHTML = question['answer_4'];
+}
+
+
+
+function refreshProgressbar(currentQuestion){
+    let progressPercent = (currentQuestion + 1) / questions.length;
+    progressPercent = Math.round(progressPercent * 100);
+    document.getElementById('progressPercentage1').innerHTML = `${progressPercent} %`;
+    document.getElementById('progressPercentage1').style = `width: ${progressPercent}%`;
+    document.getElementById('progressPercentage2').innerHTML = `${progressPercent} %`;
+    document.getElementById('progressPercentage2').style = `width: ${progressPercent}%`;
+}
 
 function answer(selection) {
     let question = questions[currentQuestion];
